@@ -1,0 +1,29 @@
+body {
+    font: 100%/1.5 system-ui, sans-serif;
+    margin: 0;
+    padding: 0 20px;
+  }
+  
+  header {
+    display: flex;
+    gap: 1em;
+    align-items: baseline;
+  }
+  
+  header label {
+    margin-left: auto;   /* pushes the filter to the right */
+  }
+  
+  header label input {
+    display: block;      /* slider on its own line */
+  }
+  
+  header label time,
+  header label em {
+    display: block;      /* own line, so updating text doesn't move the slider */
+  }
+  
+  header label em {
+    color: #777;
+    font-style: italic;
+  }
