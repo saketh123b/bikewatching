@@ -1,19 +1,46 @@
 html,
 body {
   margin: 0;
+  padding: 0;
   height: 100%;
   width: 100%;
 }
 
 body {
-  box-sizing: border-box;
-  padding: 0 20px;
+  padding: 1em;
 }
 
+/* ---------- Header + time filter (Step 5.1) ---------- */
+header {
+  display: flex;
+  gap: 1em;
+  align-items: baseline;
+}
+
+header label {
+  margin-left: auto; /* push the filter all the way to the right */
+}
+
+header label time,
+header label em {
+  display: block; /* own line so the slider doesn't jump */
+  text-align: right;
+  min-height: 1.5em;
+}
+
+header label em {
+  color: #777;
+  font-style: italic;
+}
+
+/* ---------- Map (Steps 1.2, 3.2) ---------- */
 #map {
-  width: 100%;
-  height: 80vh;
   position: relative;
+  width: 100%;
+  flex: 1; /* fill the space between header and legend */
+  min-height: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
 #map svg {
@@ -21,9 +48,56 @@ body {
   z-index: 1;
   width: 100%;
   height: 100%;
-  pointer-events: none;
+  pointer-events: none; /* so we can still pan and move the map */
 }
 
+/* ---------- Shared color variables (Step 6.1 / 6.2) ---------- */
+#map circle,
+.legend > div {
+  --color-departures: steelblue;
+  --color-arrivals: darkorange;
+  --color: color-mix(
+    in oklch,
+    var(--color-departures) calc(100% * var(--departure-ratio)),
+    var(--color-arrivals)
+  );
+}
+
+/* ---------- Circles (Steps 4.3, 4.4, 6.1) ---------- */
 #map svg circle {
-  pointer-events: auto;
+    fill: hotpink;
+    fill-opacity: 0.55;   /* lower = more transparent */
+    stroke: white;
+    stroke-width: 1;
+    pointer-events: auto; /* keeps the tooltips working */
+  }
+
+/* ---------- Legend, design 2: separate swatches & labels (Step 6.2) ---------- */
+.legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5em;
+  margin-block: 1em;
+}
+
+.legend-label {
+  font-size: 0.8em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.legend > div {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.legend > div::before {
+  content: '';
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  background: var(--color);
 }
