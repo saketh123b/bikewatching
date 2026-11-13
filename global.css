@@ -1,26 +1,30 @@
-body {
-    font: 100%/1.5 system-ui, sans-serif;
-    margin: 0;
-    padding: 0 20px;
-  }
-  
-  header {
+header {
     display: flex;
     gap: 1em;
     align-items: baseline;
   }
   
   header label {
-    margin-left: auto;   /* pushes the filter to the right */
+    margin-left: auto;                 /* push filter to the right */
+    display: grid;
+    grid-template-columns: auto 1fr;   /* text | slider */
+    column-gap: 0.6em;
+    align-items: center;
+    width: min(480px, 60%);            /* how wide the slider area gets */
   }
   
   header label input {
-    display: block;      /* slider on its own line */
+    grid-column: 2;                    /* slider next to the text */
+    width: 100%;
+    margin: 0;
   }
   
   header label time,
   header label em {
-    display: block;      /* own line, so updating text doesn't move the slider */
+    grid-column: 1 / -1;               /* its own row, full width */
+    display: block;
+    text-align: right;
+    min-height: 1.5em;                 /* reserve the line so nothing jumps */
   }
   
   header label em {
