@@ -1,33 +1,10 @@
-header {
+body {
+    font: 100%/1.5 system-ui, sans-serif;
     display: flex;
-    gap: 1em;
-    align-items: baseline;
-  }
-  
-  header label {
-    margin-left: auto;                 /* push filter to the right */
-    display: grid;
-    grid-template-columns: auto 1fr;   /* text | slider */
-    column-gap: 0.6em;
-    align-items: center;
-    width: min(480px, 60%);            /* how wide the slider area gets */
-  }
-  
-  header label input {
-    grid-column: 2;                    /* slider next to the text */
-    width: 100%;
-    margin: 0;
-  }
-  
-  header label time,
-  header label em {
-    grid-column: 1 / -1;               /* its own row, full width */
-    display: block;
-    text-align: right;
-    min-height: 1.5em;                 /* reserve the line so nothing jumps */
-  }
-  
-  header label em {
-    color: #777;
-    font-style: italic;
+    flex-flow: column;
+    max-width: 80em;
+    min-height: 100vh;
+    box-sizing: border-box;
+    margin: auto;
+    padding: 1em;
   }
